@@ -57,4 +57,8 @@ public class FlightServiceImplTest {
         assertEquals(2,flightService.findFlyRounteAround().size());
     }
 
+    @Test
+    void testNumberOfFlightEachDepartureTerminal_shouldReturnListOfSix_whenFound(){
+        assertEquals(6,flightService.numberOfFlightEachDepartureTerminal().size());
+    }
 }

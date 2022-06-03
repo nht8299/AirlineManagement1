@@ -1,6 +1,7 @@
 package com.axonactive.homeSpringBoot.service;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
+import com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +16,6 @@ public interface FlightService {
     List<Flight> findBySpecificAircraftCanExecute(String aircraftType);
 
     List<Flight> findFlyRounteAround();
+
+    List<NumberOfFlightEachDepartureTerminalDto> numberOfFlightEachDepartureTerminal();
 }

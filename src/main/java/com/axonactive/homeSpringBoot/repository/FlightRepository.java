@@ -1,6 +1,7 @@
 package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
+import com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -23,10 +24,14 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
 
   Flight findFirstBy();
    Integer countByDepartureTerminal(String departureTerminal);
-
    @Query(value = "SELECT a "+
            "FROM Flight a , Flight b WHERE a.departureTerminal = b.arrivalTerminal " +
            "AND b.departureTerminal = a.arrivalTerminal")
    List<Flight> flightRouteAround();
+
+   @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto(a.departureTerminal, count(a.id)) " +
+           "FROM Flight a " +
+           "GROUP BY a.departureTerminal" )
+    List<NumberOfFlightEachDepartureTerminalDto> NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
 }
 

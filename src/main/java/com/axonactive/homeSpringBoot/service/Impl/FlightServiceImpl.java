@@ -4,6 +4,7 @@ import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.FlightService;
 import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
+import com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,10 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> findFlyRounteAround() {
         return flightRepository.flightRouteAround();
+    }
+
+    @Override
+    public List<NumberOfFlightEachDepartureTerminalDto> numberOfFlightEachDepartureTerminal() {
+        return flightRepository.NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
     }
 }
