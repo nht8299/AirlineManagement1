@@ -16,4 +16,5 @@ public interface AircraftService {
     List<Aircraft> findByType(String aircraftType);
 
     List<AircraftTypeStaticDto> aircraftTypeStaticJPQL();
+
 }

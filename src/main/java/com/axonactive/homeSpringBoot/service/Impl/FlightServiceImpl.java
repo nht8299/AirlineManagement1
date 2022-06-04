@@ -5,10 +5,12 @@ import com.axonactive.homeSpringBoot.service.FlightService;
 import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
 import com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto;
+import com.axonactive.homeSpringBoot.service.dto.TotalCostOfFlightEachDepartureTerminalDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,4 +63,20 @@ public class FlightServiceImpl implements FlightService {
     public List<NumberOfFlightEachDepartureTerminalDto> numberOfFlightEachDepartureTerminal() {
         return flightRepository.NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
     }
+
+    @Override
+    public List<TotalCostOfFlightEachDepartureTerminalDto> totalCostOfFlightEachDepartureTerminal() {
+        return flightRepository.TOTAL_COST_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
+    }
+
+    @Override
+    public List<Flight> listOfFlightHaveDepartureTimeBeforeTwelve(int hour, int minute) {
+        return flightRepository.listOfFightHaveDepartureTimeBeforeTwelve(LocalTime.of(hour,minute));
+    }
+
+    @Override
+    public List<NumberOfFlightEachDepartureTerminalDto> numberOfLightEachDepartureTerminalBeforeTwelve(int hour, int minute) {
+        return flightRepository.NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_BEFORE_TWELVE_DTOS(LocalTime.of(hour,minute));
+    }
+
 }

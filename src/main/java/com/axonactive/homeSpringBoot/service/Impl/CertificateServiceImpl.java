@@ -3,6 +3,7 @@ package com.axonactive.homeSpringBoot.service.Impl;
 import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.entity.Certificate;
 import com.axonactive.homeSpringBoot.repository.CertificateRepository;
+import com.axonactive.homeSpringBoot.service.dto.ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,16 @@ public class CertificateServiceImpl implements CertificateService {
     @Override
     public List<Certificate> findByAircraftTypeContaining(String containingWord) {
         return certificateRepository.findByAircraftTypeContaining(containingWord);
+    }
+
+    @Override
+    public List<String> findListOfEmployeeFlightMoreThanThreeAircraft() {
+        return certificateRepository.ListOfEmployeeIdCanFlightThreeOfMoreAircraft();
+    }
+
+    @Override
+    public List<ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance> ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance() {
+        return certificateRepository.LIST_OF_PILOT_CAN_FLIGHT_MORE_THAN_THREE_AIRCRAFT_AND_BIGGEST_FLY_DISTANCES();
     }
 
 

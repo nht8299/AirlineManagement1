@@ -42,5 +42,14 @@ public class CertificateServiceImplTest {
         assertEquals(28,certificateService.findByAircraftTypeContaining("Boeing").size());
     }
 
-
+//    22.     Cho biết mã số của các phi công chỉ lái được 3 loại máy bay
+    @Test
+    void testFindListOfEmployeeCanFlightMoreThanThreeAircraft_shouldReturnListOfEmployeeId_whenFound(){
+        assertEquals(2,certificateService.findListOfEmployeeFlightMoreThanThreeAircraft().size());
+    }
+//    23.     Với mỗi phi công có thể lái nhiều hơn 3 loại máy bay, cho biết mã số phi công và tầm bay lớn nhất của các loại máy bay mà phi công đó có thể lái.
+    @Test
+    void testListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance_shouldReturnListOfPilot_whenFound(){
+        assertEquals(4,certificateService.ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance().size());
+    }
 }

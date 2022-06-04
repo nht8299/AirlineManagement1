@@ -2,9 +2,12 @@ package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto;
+import com.axonactive.homeSpringBoot.service.dto.TotalCostOfFlightEachDepartureTerminalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight,String > {
@@ -33,5 +36,23 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
            "FROM Flight a " +
            "GROUP BY a.departureTerminal" )
     List<NumberOfFlightEachDepartureTerminalDto> NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
+
+   @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.TotalCostOfFlightEachDepartureTerminalDto(a.departureTerminal, count(a.id), sum(a.price)) " +
+           "FROM Flight a " +
+           "GROUP BY a.departureTerminal")
+    List<TotalCostOfFlightEachDepartureTerminalDto> TOTAL_COST_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_DTOS();
+
+    @Query(value = "SELECT a " +
+            "FROM Flight a " +
+            "WHERE a.departureTime < :time " +
+            "ORDER BY a.departureTime")
+    List<Flight> listOfFightHaveDepartureTimeBeforeTwelve(@Param("time")LocalTime time);
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.NumberOfFlightEachDepartureTerminalDto(a.departureTerminal, count(a.id)) " +
+            "FROM Flight a " +
+            "WHERE a.departureTime < :time " +
+            "GROUP BY a.departureTerminal" )
+    List<NumberOfFlightEachDepartureTerminalDto> NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_BEFORE_TWELVE_DTOS(@Param("time")LocalTime time);
 }
+
 
