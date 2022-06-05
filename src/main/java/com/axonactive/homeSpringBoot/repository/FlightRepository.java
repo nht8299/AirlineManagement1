@@ -6,10 +6,12 @@ import com.axonactive.homeSpringBoot.service.dto.TotalCostOfFlightEachDepartureT
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalTime;
 import java.util.List;
 
+@Repository
 public interface FlightRepository extends JpaRepository<Flight,String > {
     //Cho biết các chuyến bay đi Đà Lạt (DAD).
     List<Flight> findByArrivalTerminal(String arrivalTerminal);
@@ -53,6 +55,10 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
             "WHERE a.departureTime < :time " +
             "GROUP BY a.departureTerminal" )
     List<NumberOfFlightEachDepartureTerminalDto> NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_BEFORE_TWELVE_DTOS(@Param("time")LocalTime time);
+
+    @Query("FROM Flight " +
+            "WHERE distance < ANY (SELECT distance FROM Aircraft WHERE type LIKE 'Airbus%' )")
+    List<Flight> findFlightCanFlyByAirbusAircraft();
 }
 
 

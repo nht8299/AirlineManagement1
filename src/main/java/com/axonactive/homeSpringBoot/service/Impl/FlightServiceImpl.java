@@ -79,4 +79,8 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.NUMBER_OF_FLIGHT_EACH_DEPARTURE_TERMINAL_BEFORE_TWELVE_DTOS(LocalTime.of(hour,minute));
     }
 
+    @Override
+    public List<Flight> findFlightCanFlyByAirbusAircraft(){
+        return flightRepository.findFlightCanFlyByAirbusAircraft();
+    }
 }

@@ -25,4 +25,6 @@ public interface FlightService {
     List<Flight> listOfFlightHaveDepartureTimeBeforeTwelve(int hour,int minute);
 
     List<NumberOfFlightEachDepartureTerminalDto>numberOfLightEachDepartureTerminalBeforeTwelve(int hour,int minute);
+
+    List<Flight> findFlightCanFlyByAirbusAircraft();
 }

@@ -2,6 +2,7 @@ package com.axonactive.homeSpringBoot.service;
 
 import com.axonactive.homeSpringBoot.entity.Certificate;
 import com.axonactive.homeSpringBoot.service.dto.ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance;
+import com.axonactive.homeSpringBoot.service.dto.PilotIdAndNumberOfAircraftCanFlyDto;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface CertificateService {
     List<String>findListOfEmployeeFlightMoreThanThreeAircraft();
 
     List<ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance>ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance();
+
+    List<PilotIdAndNumberOfAircraftCanFlyDto> listOfPilotAndNumberOfAircraftCanFly();
 }

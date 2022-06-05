@@ -17,21 +17,25 @@ public class FlightServiceImplTest {
     @Autowired
     FlightService flightService;
 
+//    1.	Cho biết các chuyến bay đi Đà Lạt (DAD).
     @Test
     void testFindByArrivalTerminal_shouldReturn2_whenInputDAD(){
         assertEquals(2,flightService.findByArrivalTerminal("DAD").size());
     }
 
+//    4.Cho biết các chuyến bay có độ dài đường bay nhỏ hơn 10.000km và lớn hơn 8.000km.
     @Test
     void testFindByDistanceBetween_shouldReturn1_whenInput8000And10000(){
         assertEquals(1,flightService.findByDistanceBetween(8000,10000).size());
     }
 
+//    5.Cho biết các chuyến bay xuất phát từ Sài Gòn (SGN) đi Ban Mê Thuộc (BMV).
     @Test
     void testFindByArrivalTerminalAndDepartureTerminal_shouldReturn2_whenInputSGNAndBMV(){
         assertEquals(2,flightService.findByArrivalTerminalAndDepartureTerminal("BMV","SGN").size());
     }
 
+//    6.Có bao nhiêu chuyến bay xuất phát từ Sài Gòn (SGN).
     @Test
     void testCountByDepartureTerminal_shouldReturn8_whenInputSGN(){
         assertEquals(8,flightService.countByDepartureTerminal("SGN"));
@@ -80,4 +84,11 @@ public class FlightServiceImplTest {
     void testNumberOfFlightEachDepartureTerminal_shouldReturnListOfFlight_whenFound(){
         assertEquals(11,flightService.listOfFlightHaveDepartureTimeBeforeTwelve(12,00).size());
     }
+
+    //    28.Tìm các chuyến bay có thể được thực hiện bởi tất cả các loại máy bay Boeing.
+    @Test
+    void testListOfFlightCanFlyByAirbusAircraft_shouldReturnListOfFlight_whenFound(){
+        assertEquals(17,flightService.findFlightCanFlyByAirbusAircraft().size());
+    }
 }
+

@@ -2,12 +2,15 @@ package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Certificate;
 import com.axonactive.homeSpringBoot.service.dto.ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance;
+import com.axonactive.homeSpringBoot.service.dto.PilotIdAndNumberOfAircraftCanFlyDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CertificateRepository extends JpaRepository<Certificate, Integer> {
     //11.	Cho biết mã số của các loại máy bay mà nhân viên có họ Nguyễn có thể lái.
     @Query(nativeQuery = true, value = "SELECT DISTINCT aircraft_id " +
@@ -47,4 +50,9 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
             "GROUP BY a.employee.id " +
             "ORDER BY a.employee.id")
     List<ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance> LIST_OF_PILOT_CAN_FLIGHT_MORE_THAN_THREE_AIRCRAFT_AND_BIGGEST_FLY_DISTANCES();
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.PilotIdAndNumberOfAircraftCanFlyDto(employee.id,count (aircraft.id)) " +
+            "FROM Certificate " +
+            "GROUP BY employee.id")
+    List<PilotIdAndNumberOfAircraftCanFlyDto> listOfPilotIdAndNumberOfAircraftCanFly();
 }

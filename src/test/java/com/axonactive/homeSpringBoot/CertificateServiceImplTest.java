@@ -17,26 +17,19 @@ public class CertificateServiceImplTest {
     @Autowired
     CertificateService certificateService;
 
+//    11.	Cho biết mã số của các loại máy bay mà nhân viên có họ Nguyễn có thể lái.
     @Test
     void testCertificateService_shouldReturn7_whenInputNguyen(){
         assertEquals(7,certificateService.findByEmployeeNameIsNguyen("Nguyen").size());
     }
 
-    @Test
-    void testDangTestBoeingNha(){
-        assertEquals(28,certificateService.dangTestBoeingNha().size());
-    }
-
-    @Test
-    void testDangTestAirBusNha(){
-        assertEquals(11,certificateService.dangTestAirBusNha().size());
-    }
-
+//    12.	Cho biết mã số của các phi công vừa lái được Boeing vừa lái được Airbus.
     @Test
     void testDangTestAirBusVaBoeingNha(){
         assertEquals(4,certificateService.dangTestAirBusVaBoeingNha("Boeing","Airbus").size());
     }
 
+//    15.	Cho biết tên của các phi công lái máy bay Boeing.
     @Test
     void testFindByAircraftTypeContaining_shouldReturn28_WhenInputBoeing(){
         assertEquals(28,certificateService.findByAircraftTypeContaining("Boeing").size());
@@ -52,4 +45,11 @@ public class CertificateServiceImplTest {
     void testListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance_shouldReturnListOfPilot_whenFound(){
         assertEquals(4,certificateService.ListOfPilotCanFlightMoreThanThreeAircraftAndBiggestFlyDistance().size());
     }
+
+    //    24.     Với mỗi phi công cho biết mã số phi công và tổng số loại máy bay mà phi công đó có thể lái.
+    @Test
+    void testListOfPilotAndNumberOfAircraftCanFly_shouldReturnList_whenFound(){
+        assertEquals(12,certificateService.listOfPilotAndNumberOfAircraftCanFly().size());
+    }
+
 }
